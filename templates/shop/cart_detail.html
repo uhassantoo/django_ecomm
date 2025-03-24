@@ -1,0 +1,15 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+<h1>Your Cart</h1>
+<ul>
+    {% for item in cart_items %}
+        <li>{{ item.quantity }} x {{ item.product.name }} - ${{ item.product.price }}</li>
+        <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-danger">Remove</a>
+    {% endfor %}
+</ul>
+<p>Total: ${{ total_price }}</p>
+<a href="{% url 'checkout' %}" class="btn btn-primary">Checkout</a>
+{% endblock %}
